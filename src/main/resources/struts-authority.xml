@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="authority" extends="struts-default">
+		<interceptors>
+			<interceptor name="authority" class="com.interceptor.AuthorityInterceptor" />
+			<interceptor-stack name="my">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="my" />
+
+		<global-results>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+
+		<!-- 更新站点信息 -->
+		<action name="updateStation" class="com.action.StationAction"
+			method="updateStation">
+			<result type="chain">listStations</result>
+		</action>
+
+		<action name="deleteStation" class="com.action.StationAction"
+			method="delete">
+			<result type="chain">listStations</result>
+		</action>
+
+		<action name="addStation" class="com.action.StationAction"
+			method="add">
+			<result>/WEB-INF/jsp/stationForm.jsp</result>
+		</action>
+
+		<action name="addRoute" class="com.action.RouteAction" method="add">
+			<result type="chain">listRoutes</result>
+			<result name="error">/WEB-INF/jsp/RouteForm.jsp</result>
+		</action>
+
+		<action name="deleteRoute" class="com.action.RouteAction"
+			method="delete">
+			<result type="chain">listRoutes</result>
+		</action>
+
+		<action name="updateRoute" class="com.action.RouteAction"
+			method="updateRoute">
+			<result type="chain">listRoutes</result>
+		</action>
+
+		<!-- 查询线路信息并可以修改 -->
+		<action name="queryAndUpdate" class="com.action.RouteAction"
+			method="queryAndUpdate">
+			<result>/WEB-INF/jsp/updateRo.jsp</result>
+		</action>
+
+		<action name="logout" class="com.action.AdminAction" method="logout">
+			<result>/index.jsp</result>
+		</action>
+
+		<action name="register" class="com.action.AdminAction" method="register">
+			<result>/WEB-INF/jsp/manager.jsp</result>
+		</action>
+
+		<action name="answer" class="com.action.ForumAction" method="answer">
+			<result>/WEB-INF/jsp/reply.jsp</result>
+		</action>
+
+		<action name="updateForum" class="com.action.ForumAction"
+			method="update">
+			<result type="chain">listForums</result>
+		</action>
+
+		<action name="delForum" class="com.action.ForumAction" method="del">
+			<result type="chain">listForums</result>
+		</action>
+
+		<action name="manager" class="com.action.AdminAction">
+			<result>/WEB-INF/jsp/manager.jsp</result>
+		</action>
+
+		<action name="updateSt" class="com.action.StationAction">
+			<result>/WEB-INF/jsp/updateSt.jsp</result>
+		</action>
+		
+		<action name="*Forum" class="com.action.ForumAction" method="{1}">
+			<result type="chain">listForums</result>
+		</action>
+		
+		<action name="*">
+			<result>/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+	</package>
+
+	<package name="ajax" extends="json-default">
+		<action name="autoAssist" class="com.action.StationAction"
+			method="autoAssist">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="error"></result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,50 @@
+#main {
+    height: 300px;
+    left: 28%;
+    position: absolute;
+    top: 30%;
+    width: 600px;
+}
+span {
+    font-size: 22px;
+}
+.b.d {
+    width: 52%;
+}
+.a {
+    left: 5%;
+    position: absolute;
+}
+input[type="submit"] {
+    height: 36px;
+    width: 50px;
+}
+#secondary {
+    left: 34%;
+    position: absolute;
+    top: 79%;
+    width: 29%;
+}
+.d {
+    top: 15%;
+}
+input[type="text"] {
+    height: 27px;
+}
+.b {
+    left: 25%;
+    position: absolute;
+}
+.c {
+    left: 82%;
+    position: absolute;
+}
+.e {
+    top: 40%;
+}
+.f {
+    top: 67%;
+}
+.b.e {
+    width: 52%;
+}

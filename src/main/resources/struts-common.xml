@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="common" extends="struts-default">
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+
+		<action name="listStations" class="com.action.StationAction"
+			method="list">
+			<result>/WEB-INF/jsp/listStations.jsp</result>
+		</action>
+
+		<action name="listRoutes" class="com.action.RouteAction"
+			method="list">
+			<result>/WEB-INF/jsp/listRoutes.jsp</result>
+		</action>
+
+		<!-- 根据线路id得到沿线站点 -->
+		<action name="getStByRoId" class="com.action.RouteAction" method="getStByRoId">
+			<result>/WEB-INF/jsp/routeInf.jsp</result>
+		</action>
+
+		<!-- 根据线路名称得到多个线路 -->
+		<action name="getRoByName" class="com.action.RouteAction"
+			method="getRoByName">
+			<result>/WEB-INF/jsp/routesInf.jsp</result>
+			<result name="none">/WEB-INF/jsp/none.jsp</result>
+		</action>
+
+		<!-- 根据站点名称得到站点 -->
+		<action name="getStByName" class="com.action.StationAction"
+			method="getStByName">
+			<result>/WEB-INF/jsp/stationInf.jsp</result>
+			<result name="none">/WEB-INF/jsp/none.jsp</result>
+		</action>
+
+		<!-- 根据站点得到经过的线路 -->
+		<action name="getRoBySt" class="com.action.StationAction"
+			method="getRoByStation">
+			<result>/WEB-INF/jsp/stationInf.jsp</result>
+		</action>
+
+		<action name="transfer" class="com.action.StationAction"
+			method="transfer">
+			<result>/WEB-INF/jsp/transResult.jsp</result>
+		</action>
+
+		<action name="check" class="com.action.AdminAction" method="check">
+			 <result type="redirectAction">${prePage}</result>
+			 <result name="none">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		
+		<action name="addForum" class="com.action.ForumAction" method="add">
+			<result type="chain">listForums</result>
+		</action>
+		
+		<action name="forumForm">
+			<result>/WEB-INF/jsp/forumForm.jsp</result>
+		</action>
+
+		<action name="listForums" class="com.action.ForumAction"
+			method="getAll">
+			<result>/WEB-INF/jsp/listForums.jsp</result>
+		</action>
+
+	</package>
+</struts>
